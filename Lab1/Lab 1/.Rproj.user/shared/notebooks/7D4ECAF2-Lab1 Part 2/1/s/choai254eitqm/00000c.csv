@@ -1,0 +1,4 @@
+"0","ggplot(diamonds_data) +geom_histogram(aes(carat), fill=""Orange"") + labs(title=""Range of carats from the diamond data"") + scale_x_continuous(name = ""Range"", breaks = c(0,1,2,3))"
+"2","`stat_bin()` using `bins = 30`. Pick better value with
+`binwidth`.
+"

@@ -1,0 +1,2 @@
+"0",""
+"0","hist(worms$Worm.density,xlab=""Density"",ylab=""Count"",main=""Distribution of Density"")"

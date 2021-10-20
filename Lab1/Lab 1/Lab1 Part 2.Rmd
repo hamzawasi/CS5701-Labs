@@ -1,0 +1,70 @@
+---
+title: "Lab 1 Part 2"
+author: "Hamza Wasi"
+date: "06/10/2021"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+```
+
+Load the diamonds dataset into a variable
+```{r}
+diamonds_data <- diamonds
+```
+Checking if any column values are outside of specified ranges 
+```{r}
+price_range <- range(diamonds_data$price, na.rm = TRUE)
+cat("Price Range:", price_range, "$")
+
+carat_range <- range(diamonds_data$carat, na.rm = TRUE)
+cat("Carat Range:", carat_range)
+
+x_range <- range(diamonds_data$x, na.rm = TRUE)
+cat("X Range:", x_range, "mm")
+
+y_range <- range(diamonds_data$y, na.rm = TRUE)
+#Suggested range for Y is:
+cat("Y Range: ", x_range, "mm")
+
+z_range <- range(diamonds_data$z, na.rm = TRUE)
+#Suggested range for Z is:
+cat("Z Range:", z_range, "mm")
+
+table_range <- range(diamonds_data$table, na.rm = TRUE)
+cat("Table Range:", table_range)
+
+depth_range <- range(diamonds_data$depth, na.rm = TRUE)
+cat("Depth Range:", depth_range)
+```
+Number of different levels in the column cut:
+```{r}
+levels <- unique(diamonds_data$cut)
+num_levels <- length(levels)
+
+print(levels)
+cat("Number of Levels: ", num_levels)
+```
+Summary of all the columns of the dataset
+```{r}
+library(dplyr, warn.conflicts = FALSE)
+
+#summarise_if(diamonds_data, is.numeric, funs(n(), mean, median, min, max))
+
+summary(diamonds_data)
+```
+
+```{r}
+library(ggplot2)
+```
+
+Create a bar chart displaying the count of all colors in the diamond data
+```{r}
+ggplot(diamonds_data) + geom_bar(aes(color), fill="Orange") + labs(title = "Colors from the diamonds data")
+```
+
+```{r}
+ggplot(diamonds_data) +geom_histogram(aes(carat), fill="Orange") + labs(title="Range of carats from the diamond data") + scale_x_continuous(name = "Range", breaks = c(0,1,2,3))
+```
+

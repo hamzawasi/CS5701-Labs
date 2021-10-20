@@ -1,0 +1,1 @@
+"0","ggplot(diamonds_data) + geom_bar(aes(color), fill=""Orange"") + labs(title = ""Colors from the diamonds data"")"

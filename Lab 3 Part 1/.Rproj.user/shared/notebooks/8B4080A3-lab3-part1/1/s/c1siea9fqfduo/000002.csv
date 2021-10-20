@@ -1,0 +1,4 @@
+"0","```r
+versicolor.flowers<-subset(iris, iris$Species==\"versicolor\")
+virginica.flowers<-subset(iris, iris$Species==\"virginica\")
+```"

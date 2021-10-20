@@ -1,0 +1,4 @@
+"0","freq.table<-table(data_vector)"
+"0","freq.table<-as.data.frame(freq.table) # what has happened here?"
+"0","sorted.freq.table<-freq.table[order(-freq.table$Freq),]"
+"0","head(sorted.freq.table, n=1)"

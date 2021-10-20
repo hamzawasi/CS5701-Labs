@@ -1,0 +1,105 @@
+---
+title: "Lab 3 Part 1"
+author: "Hamza Wasi"
+date: "20/10/2021"
+output: html_document
+---
+
+1.
+
+```{r}
+flour_data <- c(2.207245, 1.775420, 1.952341, 1.858900, 1.988633, 2.022014, 2.069764, 2.059351, 1.795229,
+ 1.878749, 1.948378, 1.810573, 2.033145, 2.107444, 1.997445, 1.894465, 2.013665, 1.861908,
+2.142928, 1.954375)
+```
+
+```{r}
+t.test(flour_data, mu = 2.0, alternative = "two.sided")
+```
+
+```{r}
+test.statistic <- (mean(flour_data) - 2)  / (sd(flour_data) / sqrt(20))
+```
+
+```{r}
+pt(test.statistic, df = 19) * 2
+```
+
+```{r}
+qt(0.025, df = 19)
+```
+
+```{r}
+test.statistic
+```
+
+2. 
+
+```{r}
+43/50
+```
+
+```{r}
+prop.test(43,50, p=0.75, alternative = "greater")
+```
+
+3.
+
+```{r}
+head(iris)
+```
+
+```{r}
+table(iris$Species)
+```
+
+```{r}
+mean(iris$Petal.Length)
+```
+
+```{r}
+t.test(iris$Petal.Length, mu=4, alternative = "two.sided")
+```
+
+```{r}
+hist(iris$Petal.Length)
+```
+
+```{r}
+qqnorm(iris$Petal.Length)
+qqline(iris$Petal.Length, col = "steelblue", lwd = 2)
+```
+
+```{r}
+shapiro.test(iris$Petal.Length)
+```
+
+```{r}
+setosa.flowers <- subset(iris, iris$Species=="setosa")
+versicolor.flowers <- subset(iris, iris$Species=="versicolor")
+virginica.flowers <- subset(iris, iris$Species=="virginica")
+```
+
+```{r}
+t.test(versicolor.flowers$Petal.Length, virginica.flowers$Petal.Length, alternative = "two.sided")
+```
+
+```{r}
+var(setosa.flowers$Petal.Length)
+```
+
+```{r}
+var(virginica.flowers$Petal.Length)
+```
+
+```{r}
+var.setosa <- var(setosa.flowers$Petal.Length)
+var.virginica <- var(virginica.flowers$Petal.Length)
+f.st <- var.setosa/var.virginica
+f.st
+```
+
+```{r}
+var.test(setosa.flowers$Petal.Length, virginica.flowers$Petal.Length)
+```
+

@@ -1,0 +1,6 @@
+"0","library(ggplot2,gridExtra)"
+"0","#this line below reads the csv straight into a data frame called worms"
+"0","worms <- read.csv(""data/worms.csv"")"
+"0",""
+"0","#this line below prints the head (or top) of the data frame"
+"0","head(worms,n=10)"

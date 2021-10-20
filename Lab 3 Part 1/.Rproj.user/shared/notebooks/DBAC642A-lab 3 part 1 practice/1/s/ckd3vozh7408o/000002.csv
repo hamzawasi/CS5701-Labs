@@ -1,0 +1,3 @@
+"0","setosa.flowers <- subset(iris, iris$Species==""setosa"")"
+"0","versicolor.flowers <- subset(iris, iris$Species==""versicolor"")"
+"0","virginica.flowers <- subset(iris, iris$Species==""virginica"")"

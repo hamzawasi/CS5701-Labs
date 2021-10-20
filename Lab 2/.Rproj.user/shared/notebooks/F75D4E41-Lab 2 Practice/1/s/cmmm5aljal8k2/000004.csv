@@ -1,0 +1,1 @@
+"0","auto_mpg <- read.csv(file = ""data/auto-mpg.csv"")"

@@ -1,0 +1,15 @@
+"0","```r
+var.test(setosa.flowers$Petal.Length,virginica.flowers$Petal.Length )
+```"
+"1","
+	F test to compare two variances
+
+data:  setosa.flowers$Petal.Length and virginica.flowers$Petal.Length
+F = 0.099016, num df = 49, denom df = 49, p-value = 1.875e-13
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.05618945 0.17448557
+sample estimates:
+ratio of variances 
+         0.0990164 
+"

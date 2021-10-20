@@ -1,0 +1,15 @@
+"0","```r
+t.test(versicolor.flowers$Petal.Length,virginica.flowers$Petal.Length, alternative = \"two.sided\")
+```"
+"1","
+	Welch Two Sample t-test
+
+data:  versicolor.flowers$Petal.Length and virginica.flowers$Petal.Length
+t = -12.604, df = 95.57, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.49549 -1.08851
+sample estimates:
+mean of x mean of y 
+    4.260     5.552 
+"

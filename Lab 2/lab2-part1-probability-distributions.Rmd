@@ -1,0 +1,124 @@
+---
+title: "Lab2 - inferential statistics - Probability distributions"
+author: "Isabel Sassoon"
+date: "07/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Probability functions
+
+There are four basic probability functions for each probability distribution in R. These begin with the same four prefixes: d, p, q or r followed by the root name of the probability that identifies the specific distribution. For example for the **normal** distribution the name to use is **norm**.
+
+ - d is for *”density”* and the corresponding function returns the value from the probability density function (continuous) or probability mass function (discrete).
+ - p is for *”probability”* and the corresponding function returns a value from the cumulative distribution function.
+ - q is for *”quantile”* and the corresponding function returns a value from the inverse cumulative distribution function.
+ - r is for *”random"* and the corresponding function returns a value drawn randomly from the given distribution
+
+## The normal distribution
+ 
+When we need to work with different functions related to the normal distribution then the following syntax is used
+
+To obtain the **density** of the normal distribution:
+
+d+ name of the distribution (the value on the x axis)
+
+So for example if we wanted to know the value of y (from the y axis), from the normal distribution curve that corresponds to x=2 then we would use:
+
+```{r}
+dnorm(2)
+```
+
+
+ If we wanted the value of y, but using a normal distribution with different means and s.d these are optional arguments in the function:
+ 
+```{r}
+dnorm(11,10,0.5)
+```
+
+*pnorm* is the cumulative distribution function for the normal distribution. By definition $pnorm(x) = P(X \leq x)$ and is the area under the normal density curve to the left of x. 
+
+```{r}
+pnorm(2)
+```
+
+
+The value above shows pnorm(2), the area under the normal density curve to the left of $x = 2$. From this we can see that the probability that a standard normal random variable takes on a value less than or equal to 2 is 0.977
+
+*qnorm* is the quantile function of the standard normal distribution. If $qnorm(x)= k$ then k is the value such that $P(X \leq k) = x$. *qnorm* is the inverse function for *pnorm*. 
+
+```{r}
+qnorm(0.977)
+```
+
+
+From the chunk of code above  we have: qnorm(0.977) = qnorm(pnorm(2)) = 2.
+
+*rnorm* generates random values from a standard normal distribution. The required argument is a number specifying the number of normal variables to produce. 
+
+```{r}
+x<-rnorm(20)
+x1<-rnorm(2000)
+```
+
+
+The figure below illustrates rnorm(20) and rnorm(2000) the larger the number in the bracket the more "bell curved" the plot is.
+
+```{r}
+
+hist(x)
+hist(x1)
+```
+
+***
+
+# Examples using other distributions
+
+## Poisson Distribution
+
+```{r}
+
+x1=0:100
+y2<-dpois(x1,lambda=50)
+
+plot(x1,y2, type="h", main = "Poisson Distribution (Lambda=50)", ylab="Frequency", xlab="Count")
+```
+
+
+## Binomial Distribution
+
+```{r}
+y<-dbinom(x, size=10, prob = 0.5)
+
+plot(x,y,type='h',
+     main='Binomial Distribution (n=10, p=0.5)',
+     ylab='Probability',
+     xlab ='# heads',
+     lwd=3)
+```
+
+## Uniform Distribution
+
+```{r}
+xu<-runif(100000, min=1, max=2)
+xu<-as.data.frame(xu)
+ggplot(xu, aes(x=xu)) + geom_density() + theme_classic() +
+  labs(main="A Uniform Distribution", xlab="value", ylab="Density") + xlim(0,3)
+```
+
+
+## Exponential Distribution
+
+
+```{r}
+#exponential distribution
+
+xe<-rexp(10000, rate = 10)
+xe<-as.data.frame(xe)
+
+ggplot(xe, aes(x=xe)) + geom_density() + theme_classic() +
+  labs(main="An Exponential Distribution", xlab="value", ylab="Density") + xlim(0,3)
+```

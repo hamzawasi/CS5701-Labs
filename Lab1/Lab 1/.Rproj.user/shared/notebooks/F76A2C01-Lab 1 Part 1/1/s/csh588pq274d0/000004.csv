@@ -1,0 +1,1 @@
+"0","ggplot(worms)+ geom_bar(aes(x=Vegetation), fill=""blue"")"

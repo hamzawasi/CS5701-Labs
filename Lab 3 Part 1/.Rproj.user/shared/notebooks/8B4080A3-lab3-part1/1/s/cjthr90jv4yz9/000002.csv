@@ -1,0 +1,20 @@
+"0","```r
+#The data from the 20 bags of flour is:
+x<-c(2.207245, 1.775420, 1.952341, 1.858900, 1.988633, 2.022014, 2.069764, 2.059351, 1.795229,
+ 1.878749, 1.948378, 1.810573, 2.033145, 2.107444, 1.997445, 1.894465, 2.013665, 1.861908,
+2.142928, 1.954375)
+
+t.test(x, mu=2.0, alternative=\"two.sided\")
+```"
+"1","
+	One Sample t-test
+
+data:  x
+t = -1.1878, df = 19, p-value = 0.2496
+alternative hypothesis: true mean is not equal to 2
+95 percent confidence interval:
+ 1.913266 2.023931
+sample estimates:
+mean of x 
+ 1.968599 
+"

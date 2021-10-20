@@ -1,0 +1,33 @@
+---
+title: "Lab 2"
+author: "Hamza Wasi"
+date: "19/10/2021"
+output: html_document
+---
+
+Read the auto-mpg file into a variable
+```{r}
+auto_mpg <- read.csv(file = "data/auto-mpg.csv")
+```
+
+```{r}
+summary(auto_mpg)
+```
+Determining a normally distributed variable
+```{r}
+hist(auto_mpg$acceleration)
+```
+Calculate 95% confidence interval for mean of normally distributed variable
+```{r}
+prop.test(15.57 ,398, conf.level = 0.95)
+```
+
+
+```{r}
+prop.test(155.6 ,398, conf.level = 0.95)
+```
+
+```{r}
+
+```
+

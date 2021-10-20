@@ -1,0 +1,9 @@
+"0","# histogram worms"
+"0",""
+"0","ggplot(worms, aes(x=Worm.density)) +"
+"0","  geom_histogram(fill=""blue"") +"
+"0","  labs(title=""Histogram of Worm Density"") +"
+"0","  scale_x_continuous(name=""Worm Density"", breaks = c(0,1,2,3,4,5,6,7,8,9)) +"
+"0","  theme_bw()"
+"2","`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+"

@@ -1,0 +1,7 @@
+"0","grade.point<-c(13,16,12)"
+"0","credit<-c(15,15,30)"
+"0","weighted.mean(grade.point, credit)"
+"1","[1]"
+"1"," 13.25"
+"1","
+"

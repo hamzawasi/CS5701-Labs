@@ -1,0 +1,2 @@
+"0","#head(worms)"
+"0","ggplot(data=worms)+geom_point(aes(x=Area,y=Soil.pH))"

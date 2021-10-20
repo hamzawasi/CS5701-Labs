@@ -1,0 +1,4 @@
+"0","# Can you spot the difference between line 73 and 74?"
+"0","data_frame$iseven <- ifelse(data_frame$X%%2==0,""TRUE"",""FALSE"")"
+"0","data_frame$isodd <- ifelse(data_frame$X%%3==0,TRUE,FALSE)"
+"0","data_frame"

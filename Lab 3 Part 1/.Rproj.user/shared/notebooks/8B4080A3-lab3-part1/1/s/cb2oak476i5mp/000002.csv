@@ -1,0 +1,15 @@
+"0","```r
+prop.test(43,50, p=0.75,alternative = \"greater\" )
+```"
+"1","
+	1-sample proportions test with continuity correction
+
+data:  43 out of 50, null probability 0.75
+X-squared = 2.6667, df = 1, p-value = 0.05124
+alternative hypothesis: true p is greater than 0.75
+95 percent confidence interval:
+ 0.7491613 1.0000000
+sample estimates:
+   p 
+0.86 
+"

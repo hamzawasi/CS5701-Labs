@@ -1,0 +1,388 @@
+---
+title: "QDA Lab 1 part 1"
+author: "Isabel Sassoon & Sarath Dantu"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In this lab we be going through the following topics:
+
+1. Introduction to R
+2. Exploratory Data Analysis
+
+# 1. Introduction to R
+
+For CS5701, CS5702, and CS5608 you will be using R for data analysis. So let's start with some basics of R. An elaborate Introduction to R, is available to you from the [link](http://people.brunel.ac.uk/~csstssd/itr/index.html). In this session, I will give you a crash course on:
+
+* Objects
+* Functions
+
+## 1.1 Object
+
+
+### Numbers 
+
+```{r}
+int_a <- 4
+int_b <- 2
+float_a <- 4.2
+float_b <- 6.9
+```
+
+```{r}
+int_a+int_b
+int_a*int_b
+int_a/int_b
+int_a%%int_b
+int_a^int_b
+```
+
+### Characters
+
+```{r}
+char_c <- "John"
+```
+
+### Logical 
+
+```{r}
+logic_d <- "FALSE" # logic_d <- F
+logic_e <- "TRUE" # logic_e <- T
+```
+
+### Lists/vectors
+
+```{r}
+vector_f <- c(2,2,2,1,4,5,3,2,4,4,3)
+
+```
+
+```{r}
+int_a * vector_f
+```
+
+### Data frame
+
+```{r}
+seq_x <- seq(1:20)
+seq_y <- seq(21:40)
+data_frame<-as.data.frame(cbind(seq_x,seq_y)) # this is coercion (http://people.brunel.ac.uk/~csstssd/itr/ItR_1_Objects.html#Coercion)
+data_frame
+colnames(data_frame) <- c("X","Y")
+data_frame
+data_frame$x_plus_y <- data_frame$X +data_frame$Y
+data_frame
+# Can you spot the difference between line 73 and 74?
+data_frame$iseven <- ifelse(data_frame$X%%2==0,"TRUE","FALSE")
+data_frame$isodd <- ifelse(data_frame$X%%3==0,TRUE,FALSE)
+data_frame
+```
+
+
+## 1.2 Function 
+
+```{r}
+add_function <- function(a,b){
+  a <- a*a
+  return(a+b)
+}
+add_function(90,80)
+```
+
+
+## 1.3 Essential tips:
+
+* R is very sensitive to cases and ***syntax***.
+* Objects are everything in R. Objects with parenthesis are ***[functions](http://people.brunel.ac.uk/~csstssd/itr/ItR_2_Functions.html)*** and without are ***[data types](http://people.brunel.ac.uk/~csstssd/itr/ItR_1_Objects.html)***.
+* `#` in front of a sentence or a word is treated as a comment and is not executed.
+* For help in R, `help("command")`
+
+***
+
+# 2. Exploratory Data Analysis
+
+In this lab session the key objectives are to use R through RStudio to read in a small set of data and to perform exploratory data analysis (EDA). In R, it is possible to read data from different file formats:
+
+ * manual input
+ * plain text
+ * delimited text - such as .csv/.tsv files
+ * spreadsheets
+ * SAS formats 
+ * anything else that you can imagine off...
+
+***
+
+Now lets see how to do some descriptive data analysis. This will also introduce you to ggplot and its syntax.
+
+## 2.1 Categorical variables: Numerical summaries
+
+If you recall from the lecture the numerical summary for a categorical variable is a frequency table. These are very easy to produce with R functions. 
+
+```{r}
+library(ggplot2,gridExtra)
+#this line below reads the csv straight into a data frame called worms
+worms <- read.csv("data/worms.csv")
+
+#this line below prints the head (or top) of the data frame
+head(worms,n=10)
+
+```
+
+There are many additional packages that offer more sophisticated options. We will explore relevant ones later in the module. It is also possible to do frequency tables for more than one column at the same time (in effect creating a contingency table):
+
+```{r}
+table(worms$Damp, worms$Vegetation)
+```
+
+
+## 2.2 Categorical variables: Graphical summaries
+
+Now lets look at ways of graphically summarizing a column of categorical data from our data frame. Lets start with the vegetation, using the basic R library
+
+```{r}
+table(worms$Vegetation)
+frequency_vegitation <- table(worms$Vegetation)
+barplot(table(worms$Vegetation))
+```
+
+It is also possible to use the same syntax for the two way table (contingency table)
+
+```{r}
+barplot(worms$Soil.pH)
+hist(worms$Soil.pH)
+```
+
+### Using ggplot
+
+One library that is very handy for graphs is the ggplot2. We have loaded it earlier in this notebook.
+
+There are a huge number of options in ggplot. In most cases you start with `ggplot()`, supply a dataset and aesthetic mapping (with `aes()`). You then add on layers (like `geom_point()` or `geom_histogram()`), scales (like `scale_colour_brewer()`), faceting specifications (like `facet_wrap()`) and coordinate systems (like `coord_flip()`).
+
+A good overview is available in the cheatsheet, you can access from the [link](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
+
+Lets look at replicating the plots above and more using ggplot.
+
+#### Scatter plot
+
+```{r}
+#head(worms)
+ggplot(data=worms)+geom_point(aes(x=Area,y=Soil.pH))
+```
+
+
+#### Bar plot
+
+```{r}
+ggplot(worms)+ geom_bar(aes(x=Vegetation), fill="blue")
+```
+
+There is a lot you can specify in ggplot - see below for another example which now has well labelled titles and axis and a different theme.
+
+
+```{r}
+ggplot(worms)+ geom_bar(aes(x=Vegetation), fill="blue") +
+  labs(title = "Vegetation from the Worms data") +
+  scale_y_continuous(name="Frequency", breaks=c(0,5,10)) +
+  theme_dark()
+```
+
+### Pie chart
+
+The code chunk below creates a pie chart. In order to do such a plot, the frequency table needs to be computed first, then transformed into a data frame, before finally being plotted using a ggplot option (coord_polar).
+
+Note that giving clear column names makes it easier and quicker to get a better laballed graph.
+
+```{r}
+w1<-table(worms$Vegetation)
+w2<-as.data.frame(w1)
+#w2
+colnames(w2)<-c("Vegetation","Frequency")
+
+ggplot(w2, aes(x="", y=Frequency, fill=Vegetation))+geom_bar(width=1, stat = "identity") +coord_polar("y", start = 0) +labs(title="Pie Chart for the Vegeation from the Worms data")
+```
+
+## 2.3. Numerical variables: Descriptve analysis (measures: location & spread)
+
+In the lecture we looked at
+
+ - measures of location such as the mean, median and the mode
+ - measures of spread and variability such as the variance and the IQR
+ - extreme values
+
+
+Lets see how to use R to compute the measures of location (mean, median, and mode) and spread (range, inter quartile range, standard deviation and variance):
+
+### Measures of location
+
+We are using a small vector of data:
+
+```{r}
+data_vector <-c(4,7,2,5,6,2)
+```
+
+#### Mean
+
+```{r}
+mean(data_vector)
+```
+
+#### Median
+
+```{r}
+median(data_vector)
+```
+
+#### Mode
+
+Unlike the mean and the median there is **no built in R function** to compute the mode.
+
+This is my approach, there are many ways of achieving the same!
+
+#### DIY Mode 
+
+```{r}
+freq.table<-table(data_vector)
+freq.table<-as.data.frame(freq.table) # what has happened here?
+sorted.freq.table<-freq.table[order(-freq.table$Freq),]
+head(sorted.freq.table, n=1)
+```
+
+#### Lazy Mode
+
+```{r}
+
+#Uncomment the line below if you do not have the 'modeest' package
+#install.packages("modeest")
+library(modeest)
+mfv(data_vector,method = "mfv")
+```
+
+#### Weighted Mean
+
+How can I calculate my grade?
+
+```{r}
+grade.point<-c(13,16,12)
+credit<-c(15,15,30)
+weighted.mean(grade.point, credit)
+```
+
+### Measures of variation
+
+#### Range 
+
+Range --> Minimum and the maximum value
+```{r}
+range(data_vector)
+```
+
+
+#### IQR
+
+IQR: 25th and 75th percentile values
+
+```{r}
+IQR(data_vector)
+```
+
+This is based on the 25th and 75th percentile, which can also be computed in R using the quantile function:
+
+```{r}
+quantile(data_vector, c(0.25,0.75))
+```
+
+
+#### Standard Deviation
+
+```{r}
+sd(data_vector)
+```
+
+
+#### Variance
+
+```{r}
+var(data_vector)
+```
+
+#### Is this is the easiest/fastest/R'st way to get everything in one go?
+
+Glad you asked!!! You are tuning into R with the right approach...
+
+```{r}
+summary(data_vector)
+```
+
+This provides us with the **mean**, the **median** and the **1st** and **3rd** quartiles.
+
+
+Now can you apply what you have learned on the `worms` dataset:
+
+A handy function for summarizing numerical variables is:
+
+```{r}
+summary(worms$Worm.density)
+```
+
+
+To find the extreme values - say the highest:
+
+```{r}
+
+head(sort(worms$Worm.density, decreasing = F))
+```
+
+How can the code be modified to return the three lowest values?
+
+```{r}
+# use this chunk of code to try
+
+```
+
+To compute the others:
+
+- `var()` gives the variance 
+- `sd()` gives the standard deviation
+
+***
+
+## 2.4 Numerical variables: Graphical summary
+
+### Histogram
+
+A histogram to see the distribution of the values for one of the continuous columns can be created in many ways.
+
+Using the base R code:
+
+```{r}
+
+hist(worms$Worm.density,xlab="Density",ylab="Count",main="Distribution of Density")
+```
+
+OR ggplot can also be used:
+
+```{r}
+# histogram worms
+
+ggplot(worms, aes(x=Worm.density)) +
+  geom_histogram(fill="blue") +
+  labs(title="Histogram of Worm Density") +
+  scale_x_continuous(name="Worm Density", breaks = c(0,1,2,3,4,5,6,7,8,9)) +
+  theme_bw()
+```
+
+### Box plot
+
+Another interesting perspective on a continuous variable, when it is part of a data set with categorical variable is to look at them both at the same time. A **boxplot** is a useful tool to achieve this.
+
+```{r}
+#box plot
+ggplot(worms, aes(x=Worm.density, y=Damp)) +
+  geom_boxplot(fill="steelblue2") +
+  theme_classic() +
+  labs(title="Box Plot of Worm Density by Damp") +
+  coord_flip()
+```

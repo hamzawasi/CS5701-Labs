@@ -1,0 +1,4 @@
+"0","ggplot(worms)+ geom_bar(aes(x=Vegetation), fill=""blue"") +"
+"0","  labs(title = ""Vegetation from the Worms data"") +"
+"0","  scale_y_continuous(name=""Frequency"", breaks=c(0,5,10)) +"
+"0","  theme_classic()"

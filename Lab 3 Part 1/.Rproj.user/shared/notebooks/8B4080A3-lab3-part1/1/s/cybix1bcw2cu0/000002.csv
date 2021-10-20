@@ -1,0 +1,7 @@
+"0","```r
+table(iris$Species)
+```"
+"1","
+    setosa versicolor  virginica 
+        50         50         50 
+"

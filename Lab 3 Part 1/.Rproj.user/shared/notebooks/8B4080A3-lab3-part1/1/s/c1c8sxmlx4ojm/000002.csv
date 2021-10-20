@@ -1,0 +1,4 @@
+"0","```r
+qqnorm(iris$Petal.Length)
+qqline(iris$Petal.Length, col = \"steelblue\", lwd = 2)
+```"

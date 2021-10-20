@@ -1,0 +1,8 @@
+"0","var.setosa <- var(setosa.flowers$Petal.Length)"
+"0","var.virginica <- var(virginica.flowers$Petal.Length)"
+"0","f.st <- var.setosa/var.virginica"
+"0","f.st"
+"1","[1]"
+"1"," 0.0990164"
+"1","
+"

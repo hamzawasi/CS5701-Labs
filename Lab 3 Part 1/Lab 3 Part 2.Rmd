@@ -1,0 +1,7 @@
+---
+title: "Lab 3 Part 2"
+author: "Hamza Wasi"
+date: "20/10/2021"
+output: html_document
+---
+

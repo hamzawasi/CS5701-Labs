@@ -1,0 +1,6 @@
+"0","w1<-table(worms$Vegetation)"
+"0","w2<-as.data.frame(w1)"
+"0","#w2"
+"0","colnames(w2)<-c(""Vegetation"",""Frequency"")"
+"0",""
+"0","ggplot(w2, aes(x="""", y=Frequency, fill=Vegetation))+geom_bar(width=1, stat = ""identity"") +coord_polar(""y"", start = 0) +labs(title=""Pie Chart for the Vegeation from the Worms data"")"

@@ -1,0 +1,15 @@
+"0","```r
+t.test(iris$Petal.Length, mu=4, alternative = \"two.sided\")
+```"
+"1","
+	One Sample t-test
+
+data:  iris$Petal.Length
+t = -1.679, df = 149, p-value = 0.09525
+alternative hypothesis: true mean is not equal to 4
+95 percent confidence interval:
+ 3.473185 4.042815
+sample estimates:
+mean of x 
+    3.758 
+"

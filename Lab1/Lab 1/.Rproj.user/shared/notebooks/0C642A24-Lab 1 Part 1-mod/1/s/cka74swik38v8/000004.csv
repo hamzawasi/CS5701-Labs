@@ -1,0 +1,6 @@
+"0","#box plot"
+"0","ggplot(worms, aes(x=Worm.density, y=Damp)) +"
+"0","  geom_boxplot(fill=""steelblue2"") +"
+"0","  theme_classic() +"
+"0","  labs(title=""Box Plot of Worm Density by Damp"") +"
+"0","  coord_flip()"
